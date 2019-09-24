@@ -21,7 +21,7 @@ function mapProps(json) {
                         currentElement[prop] = { type: [type] };
                     } else {
                         // Mapping objects
-                        currentElement[prop] = { type: [type], fields: mapProps(value) };
+                        currentElement[prop] = { type: [`object-${type}`], fields: mapProps(value) };
                     }
                 } else {
                     // Mapping empty arrays
@@ -37,7 +37,9 @@ function mapProps(json) {
         result = lodash.mergeWith(result, currentElement, (objectValue, sourceValue) => {
             // we do this to  aggregate all types together. For instance, ['array'] and ['empty-array'] become ['array', 'empty-array']
             if (lodash.isArray(objectValue) || lodash.isSet(objectValue)) {
-                return new Set([...objectValue, ...sourceValue]);
+                let mergedSet = new Set([...objectValue, ...sourceValue]);
+                // it prints nicer!
+                return [...mergedSet];
             }
         });
     });

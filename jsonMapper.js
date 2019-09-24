@@ -35,6 +35,7 @@ function mapProps(json) {
         }
 
         result = lodash.mergeWith(result, currentElement, (objectValue, sourceValue) => {
+            // we do this to  aggregate all types together. For instance, ['array'] and ['empty-array'] become ['array', 'empty-array']
             if (lodash.isArray(objectValue) || lodash.isSet(objectValue)) {
                 return new Set([...objectValue, ...sourceValue]);
             }

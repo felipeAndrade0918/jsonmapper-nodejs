@@ -16,12 +16,15 @@ function mapProps(json) {
                 
                 if (firstElement) {
                     if (!lodash.isObject(firstElement)) {
+                        // Mapping primitive types
                         type = `${typeof firstElement}-${type}`;
                         currentElement[prop] = { type: [type] };
                     } else {
+                        // Mapping objects
                         currentElement[prop] = { type: [type], fields: mapProps(value) };
                     }
                 } else {
+                    // Mapping empty arrays
                     currentElement[prop] = { type: [`empty-${type}`] };
                 }
             } else if (lodash.isObject(value)) {

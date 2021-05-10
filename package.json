@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/felipeAndrade0918/jsonmapper-nodejs#readme",
   "dependencies": {
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   }
 }
